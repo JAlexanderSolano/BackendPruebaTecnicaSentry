@@ -4,7 +4,7 @@ using PruebaTecnicaSentry.Response;
 
 namespace PruebaTecnicaSentry.Data
 {
-    public class TareaData: IRepository
+    public class TareaData : IRepository
     {
         public int GuardarTarea(string title, int isComplete)
         {
@@ -29,7 +29,8 @@ namespace PruebaTecnicaSentry.Data
                     }
                 }
 
-            }catch(Exception ex) 
+            }
+            catch (Exception ex)
             {
                 return 0;
             }
@@ -63,9 +64,19 @@ namespace PruebaTecnicaSentry.Data
 
                     if (taskUpdate != null)
                     {
-                        taskUpdate.Iscompleted = true;
-                        db.SaveChanges();
-                        return 1;
+
+                        // validamos si la tarea ya fue actualizada 
+                        if (taskUpdate.Iscompleted != true)
+                        {
+                            taskUpdate.Iscompleted = true;
+                            db.SaveChanges();
+                            return 1;
+                        }
+                        else
+                        {
+                            return 2;
+                        }
+
                     }
                     else
                     {
@@ -73,7 +84,8 @@ namespace PruebaTecnicaSentry.Data
                     }
                 }
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return 0;
             }

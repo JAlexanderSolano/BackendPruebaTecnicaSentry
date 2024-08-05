@@ -61,20 +61,20 @@ namespace PruebaTecnicaSentry.Controllers
                     {
                         _result = "La tarea que desea registrar ya existe";
                         lsResult.Add(new ResultResponse(_result) { });
-                        return BadRequest(lsResult);
+                        return Ok(lsResult);
                     }
                     else
                     {
                         _result = "Tarea no creada con exito";
                         lsResult.Add(new ResultResponse(_result) { });
-                        return BadRequest(lsResult);
+                        return Ok(lsResult);
                     }
                 }
                 else
                 {
                     _result = "El campo titulo no puede ir vacio";
                     lsResult.Add(new ResultResponse(_result) { });
-                    return BadRequest(lsResult);
+                    return Ok(lsResult);
                 }
 
             }
@@ -102,11 +102,17 @@ namespace PruebaTecnicaSentry.Controllers
                     lsResult.Add(new ResultResponse(_result) { });
                     return Ok(lsResult);
                 }
+                else if (updateTask == 2)
+                {
+                    _result = String.Format("La tarea con id {0} ya ha sido actualizada", id);
+                    lsResult.Add(new ResultResponse(_result) { });
+                    return Ok(lsResult);
+                }
                 else
                 {
                     _result = "La tarea que desea actualizar no existe";
                     lsResult.Add(new ResultResponse(_result) { });
-                    return BadRequest(lsResult);
+                    return Ok(lsResult);
 
                 }
 
