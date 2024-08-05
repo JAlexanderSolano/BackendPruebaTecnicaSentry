@@ -6,7 +6,7 @@ namespace PruebaTecnicaSentry.Repository
     public interface IRepository
     {
         // metodos para consumir cada peticion
-        int GuardarTarea(string title, int isComplete);
+        int GuardarTarea(string? title, int isComplete);
 
         List<ResultTask> ObtenerTareas();
 

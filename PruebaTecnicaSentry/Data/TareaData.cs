@@ -6,13 +6,13 @@ namespace PruebaTecnicaSentry.Data
 {
     public class TareaData : IRepository
     {
-        public int GuardarTarea(string title, int isComplete)
+        public int GuardarTarea(string? title, int isComplete)
         {
             try
             {
                 using (var db = new Models.Db.PruebaTecnicaSentryContext())
                 {
-                    TbTask taskExist = db.TbTasks.Where(t => t.Title == title).FirstOrDefault();
+                    TbTask ?taskExist = db.TbTasks.Where(t => t.Title == title).FirstOrDefault();
 
                     if (taskExist == null)
                     {
@@ -32,13 +32,13 @@ namespace PruebaTecnicaSentry.Data
             }
             catch (Exception ex)
             {
+                string _ex = ex.Message;
                 return 0;
             }
         }
 
         public List<ResultTask> ObtenerTareas()
         {
-            string _condicion = "";
             List<ResultTask> tasks = new List<ResultTask>();
             using (var db = new Models.Db.PruebaTecnicaSentryContext())
             {
@@ -60,7 +60,7 @@ namespace PruebaTecnicaSentry.Data
             {
                 using (var db = new Models.Db.PruebaTecnicaSentryContext())
                 {
-                    TbTask taskUpdate = db.TbTasks.Where(t => t.Id == id).FirstOrDefault();
+                    TbTask ?taskUpdate = db.TbTasks.Where(t => t.Id == id).FirstOrDefault();
 
                     if (taskUpdate != null)
                     {
@@ -87,6 +87,7 @@ namespace PruebaTecnicaSentry.Data
             }
             catch (Exception ex)
             {
+                string _ex = ex.Message;
                 return 0;
             }
         }
